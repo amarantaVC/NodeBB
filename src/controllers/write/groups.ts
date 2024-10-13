@@ -1,9 +1,9 @@
 /* eslint-disable import/no-import-module-exports */
 import { Request, Response } from 'express';
 /* eslint-disable import/no-import-module-exports */
-import * as api from '../../api';
+import api from '../../api';
 /* eslint-disable import/no-import-module-exports */
-import * as helpers from '../helpers';
+import helpers from '../helpers';
 
 export const list = async (req: Request, res: Response): Promise<void> => {
 	// The following line calls a function in a module that hasn't been updated to TS yet
@@ -18,11 +18,9 @@ export const exists = async (req: Request, res: Response): Promise<void> => {
 // export const create es una funcion que tiene como fin
 export const create = async (req: Request, res: Response): Promise<void> => {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-	const groupData: unknown = req.body;
+	const groupData: unknown = await api.groups.create(req, req.body);
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-	const groupObj: unknown = await api.groups.create(groupData as Record<string, unknown>);
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-	await helpers.formatApiResponse(200, res, groupObj);
+	await helpers.formatApiResponse(200, res, groupData);
 };
 
 export const update = async (req: Request, res: Response): Promise<void> => {
