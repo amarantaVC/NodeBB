@@ -12,7 +12,7 @@ export const exists = async (req: Request, res: Response): Promise<void> => {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 	await helpers.formatApiResponse(200, res);
 };
-
+// export const create es una funcion que tiene como fin
 export const create = async (req: Request, res: Response): Promise<void> => {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 	const groupData: unknown = req.body;
@@ -27,9 +27,9 @@ export const update = async (req: Request, res: Response): Promise<void> => {
 	const groupObj = await api.groups.update(req, {
 		...req.body,
 		slug: req.params.slug,
-	});
+	}) as Record<string, unknown>;
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-	await helpers.formatApiResponse(200, res, groupObj as any);
+	await helpers.formatApiResponse(200, res, groupObj);
 };
 
 export const deleteGroup = async (req: Request, res: Response): Promise<void> => {
