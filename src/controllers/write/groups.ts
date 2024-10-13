@@ -15,7 +15,9 @@ export const exists = async (req: Request, res: Response): Promise<void> => {
 
 export const create = async (req: Request, res: Response): Promise<void> => {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-	const groupObj = await api.groups.create(req, req.body);
+	const groupData: unknown = req.body;
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+	const groupObj: unknown = await api.groups.create(groupData as Record<string, unknown>);
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 	await helpers.formatApiResponse(200, res, groupObj);
 };
@@ -27,7 +29,7 @@ export const update = async (req: Request, res: Response): Promise<void> => {
 		slug: req.params.slug,
 	});
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-	await helpers.formatApiResponse(200, res, groupObj);
+	await helpers.formatApiResponse(200, res, groupObj as any);
 };
 
 export const deleteGroup = async (req: Request, res: Response): Promise<void> => {
@@ -73,7 +75,7 @@ export const rescind = async (req: Request, res: Response): Promise<void> => {
 
 export const getPending = async (req: Request, res: Response): Promise<void> => {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-	const pending = await api.groups.getPending(req, req.params);
+	const pending: unknown = await api.groups.getPending(req, req.params);
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 	await helpers.formatApiResponse(200, res, { pending });
 };
@@ -94,7 +96,7 @@ export const reject = async (req: Request, res: Response): Promise<void> => {
 
 export const getInvites = async (req: Request, res: Response): Promise<void> => {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-	const invites = await api.groups.getInvites(req, req.params);
+	const invites: unknown = await api.groups.getInvites(req, req.params);
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 	await helpers.formatApiResponse(200, res, { invites });
 };

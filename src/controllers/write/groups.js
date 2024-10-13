@@ -1,4 +1,5 @@
 "use strict";
+// eslint-disable @typescript-eslint/no-unsafe-assignment
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -29,7 +30,7 @@ const helpers = __importStar(require("../helpers"));
 const list = async (req, res) => {
     // The following line calls a function in a module that hasn't been updated to TS yet
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res, await api.groups.list(req, Object.assign({}, req.query)));
+    await helpers.formatApiResponse(200, res, await api.groups.list(req, Object.assign({}, req.query)));
 };
 exports.list = list;
 const exists = async (req, res) => {
@@ -39,105 +40,106 @@ const exists = async (req, res) => {
 exports.exists = exists;
 const create = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+    // @typescript-eslint/no-unsafe-member-access
     const groupObj = await api.groups.create(req, req.body);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res, groupObj);
+    await helpers.formatApiResponse(200, res, groupObj);
 };
 exports.create = create;
 const update = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     const groupObj = await api.groups.update(req, Object.assign(Object.assign({}, req.body), { slug: req.params.slug }));
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res, groupObj);
+    await helpers.formatApiResponse(200, res, groupObj);
 };
 exports.update = update;
 const deleteGroup = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     await api.groups.delete(req, req.params);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res);
+    await helpers.formatApiResponse(200, res);
 };
 exports.deleteGroup = deleteGroup;
 const listMembers = async (req, res) => {
     const { slug } = req.params;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res, await api.groups.listMembers(req, Object.assign(Object.assign({}, req.query), { slug })));
+    await helpers.formatApiResponse(200, res, await api.groups.listMembers(req, Object.assign(Object.assign({}, req.query), { slug })));
 };
 exports.listMembers = listMembers;
 const join = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     await api.groups.join(req, req.params);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res);
+    await helpers.formatApiResponse(200, res);
 };
 exports.join = join;
 const leave = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     await api.groups.leave(req, req.params);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res);
+    await helpers.formatApiResponse(200, res);
 };
 exports.leave = leave;
 const grant = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     await api.groups.grant(req, req.params);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res);
+    await helpers.formatApiResponse(200, res);
 };
 exports.grant = grant;
 const rescind = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     await api.groups.rescind(req, req.params);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res);
+    await helpers.formatApiResponse(200, res);
 };
 exports.rescind = rescind;
 const getPending = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     const pending = await api.groups.getPending(req, req.params);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res, { pending });
+    await helpers.formatApiResponse(200, res, { pending });
 };
 exports.getPending = getPending;
 const accept = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     await api.groups.accept(req, req.params);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res);
+    await helpers.formatApiResponse(200, res);
 };
 exports.accept = accept;
 const reject = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     await api.groups.reject(req, req.params);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res);
+    await helpers.formatApiResponse(200, res);
 };
 exports.reject = reject;
 const getInvites = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     const invites = await api.groups.getInvites(req, req.params);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res, { invites });
+    await helpers.formatApiResponse(200, res, { invites });
 };
 exports.getInvites = getInvites;
 const issueInvite = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     await api.groups.issueInvite(req, req.params);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res);
+    await helpers.formatApiResponse(200, res);
 };
 exports.issueInvite = issueInvite;
 const acceptInvite = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     await api.groups.acceptInvite(req, req.params);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res);
+    await helpers.formatApiResponse(200, res);
 };
 exports.acceptInvite = acceptInvite;
 const rejectInvite = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     await api.groups.rejectInvite(req, req.params);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    helpers.formatApiResponse(200, res);
+    await helpers.formatApiResponse(200, res);
 };
 exports.rejectInvite = rejectInvite;
