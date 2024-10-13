@@ -1,5 +1,8 @@
+/* eslint-disable import/no-import-module-exports */
 import { Request, Response } from 'express';
+/* eslint-disable import/no-import-module-exports */
 import * as api from '../../api';
+/* eslint-disable import/no-import-module-exports */
 import * as helpers from '../helpers';
 
 export const list = async (req: Request, res: Response): Promise<void> => {
@@ -121,3 +124,4 @@ export const rejectInvite = async (req: Request, res: Response): Promise<void> =
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 	await helpers.formatApiResponse(200, res);
 };
+

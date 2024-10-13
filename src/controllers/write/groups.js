@@ -1,5 +1,4 @@
 "use strict";
-// eslint-disable @typescript-eslint/no-unsafe-assignment
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -25,7 +24,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rejectInvite = exports.acceptInvite = exports.issueInvite = exports.getInvites = exports.reject = exports.accept = exports.getPending = exports.rescind = exports.grant = exports.leave = exports.join = exports.listMembers = exports.deleteGroup = exports.update = exports.create = exports.exists = exports.list = void 0;
+/* eslint-disable import/no-import-module-exports */
 const api = __importStar(require("../../api"));
+/* eslint-disable import/no-import-module-exports */
 const helpers = __importStar(require("../helpers"));
 const list = async (req, res) => {
     // The following line calls a function in a module that hasn't been updated to TS yet
@@ -38,10 +39,12 @@ const exists = async (req, res) => {
     await helpers.formatApiResponse(200, res);
 };
 exports.exists = exists;
+// export const create es una funcion que tiene como fin
 const create = async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    // @typescript-eslint/no-unsafe-member-access
-    const groupObj = await api.groups.create(req, req.body);
+    const groupData = req.body;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+    const groupObj = await api.groups.create(groupData);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     await helpers.formatApiResponse(200, res, groupObj);
 };
